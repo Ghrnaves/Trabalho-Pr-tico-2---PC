@@ -8,7 +8,7 @@ namespace Trabalho_Mercado
 {
     internal class Program
     {
-        const int MAX = 100;
+        const int MAX = 9999;
         
         static int[] prodCodigo = new int[MAX];
         static string[] prodDescricao = new string[MAX];
@@ -22,7 +22,7 @@ namespace Trabalho_Mercado
         static int totalVendas = 0; 
         static void Main()
         {
-            int opcao;
+            int opcao = 0;
             do
             {
                 Console.WriteLine("========================================");
@@ -32,7 +32,6 @@ namespace Trabalho_Mercado
                 Console.WriteLine("4 - Relatório de vendas por funcionário");
                 Console.WriteLine("0 - Sair");
                 Console.Write("Selecione uma opção: ");
-
                 opcao = int.Parse(Console.ReadLine());
                 switch (opcao)
                 {
@@ -59,7 +58,22 @@ namespace Trabalho_Mercado
         }
         static void CadastrarProduto()
         {
-            
+            Console.Clear();
+            Console.WriteLine("--- CADASTRAR PRODUTO ---");
+            Console.WriteLine("Insira o código do produto: ");
+            prodCodigo[totalProdutos] = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Insira a descrição do produto: ");
+            prodDescricao[totalProdutos] = Console.ReadLine();
+
+            Console.WriteLine("Insira o valor do produto: ");
+            prodValor[totalProdutos] = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Insira a quantidade disponível em estoque: ");
+            prodEstoque[totalProdutos] = int.Parse(Console.ReadLine());
+
+            totalProdutos++;
+            Console.WriteLine("Produto cadastrado!");
         }
         static void RealizarVenda()
         {
