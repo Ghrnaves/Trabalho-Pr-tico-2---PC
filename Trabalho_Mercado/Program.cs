@@ -10,6 +10,7 @@ namespace Trabalho_Mercado
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("eh so um teste boy");
         }
     }
 }
