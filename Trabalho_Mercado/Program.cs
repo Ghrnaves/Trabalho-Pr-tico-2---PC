@@ -242,7 +242,7 @@ namespace Trabalho_Mercado
                         }
                     }
 
-                    double valorVenda = qtdVendida * valorUnitario;
+                    double valorVenda = qtdVendida*valorUnitario;
 
                     totalFuncionario += valorVenda;
 
