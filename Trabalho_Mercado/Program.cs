@@ -4,7 +4,7 @@ namespace Trabalho_Mercado
 {
     internal class Program
     {
-        const int MAX = 100;
+        const int MAX = 1000;
 
         static string[,] matrizProdutos = new string[MAX, 4];
         static int totalProdutos = 0;
@@ -20,7 +20,7 @@ namespace Trabalho_Mercado
             {
                 Console.Clear();
 
-                Console.WriteLine("========================================");
+                Console.WriteLine("-------------------------------------------");
                 Console.WriteLine("1 - Cadastrar produtos");
                 Console.WriteLine("2 - Realizar uma venda");
                 Console.WriteLine("3 - Relatório de vendas");
@@ -58,32 +58,29 @@ namespace Trabalho_Mercado
                         break;
                 }
 
-            } while (opcao != 0);
+            } while(opcao != 0);
         }
 
         static void MostrarProdutos()
         {
-            Console.WriteLine("\n----------------------------------------");
-            Console.WriteLine("Código | Descrição | Valor | Qtd");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("Código | Descrição | Valor | Quantidade");
             Console.WriteLine("----------------------------------------");
 
             for (int i = 0; i < totalProdutos; i++)
             {
-                Console.WriteLine(
-                    $"{matrizProdutos[i, 0]}\t" +
-                    $"{matrizProdutos[i, 1]}\t\t" +
-                    $"R$ {double.Parse(matrizProdutos[i, 2]):F2}\t" +
-                    $"{matrizProdutos[i, 3]}"
-                );
+                Console.Write($"{matrizProdutos[i, 0]}  |");
+                Console.Write($" {matrizProdutos[i, 1]} |");
+                Console.Write($" R${double.Parse(matrizProdutos[i, 2])}  |");
+                Console.Write($" {matrizProdutos[i, 3]}\n");
             }
-
             Console.WriteLine("----------------------------------------");
         }
 
         static void CadastrarProduto()
         {
             Console.Clear();
-            Console.WriteLine("=== CADASTRO DE PRODUTO ===");
+            Console.WriteLine("--- CADASTRO DE PRODUTO ---");
 
             Console.Write("Código: ");
             matrizProdutos[totalProdutos, 0] = Console.ReadLine();
@@ -101,18 +98,18 @@ namespace Trabalho_Mercado
 
             totalProdutos++;
 
-            Console.WriteLine("\nProduto cadastrado com sucesso!");
+            Console.WriteLine("\nProduto cadastrado!");
 
             MostrarProdutos();
 
-            Console.WriteLine("\nPressione qualquer tecla para continuar...");
+            Console.WriteLine("\nPressione qualquer tecla para continuar");
             Console.ReadKey();
         }
 
         static void RealizarVenda()
         {
             Console.Clear();
-            Console.WriteLine("=== REALIZAR VENDA ===");
+            Console.WriteLine("--- REALIZAR VENDA ---");
 
             if (totalProdutos == 0)
             {
@@ -160,14 +157,13 @@ namespace Trabalho_Mercado
 
             estoque -= qtdVenda;
             matrizProdutos[indiceProduto, 3] = estoque.ToString();
-
             matrizVendas[totalVendas, 0] = codProd;
             matrizVendas[totalVendas, 1] = codFunc;
             matrizVendas[totalVendas, 2] = qtdVenda.ToString();
 
             totalVendas++;
 
-            Console.WriteLine("\nVenda registrada com sucesso!");
+            Console.WriteLine("\nVenda registrada!");
 
             MostrarProdutos();
 
@@ -179,7 +175,7 @@ namespace Trabalho_Mercado
         {
             Console.Clear();
 
-            Console.WriteLine("=== RELATÓRIO DE VENDAS ===");
+            Console.WriteLine("--- RELATÓRIO DE VENDAS ---");
             Console.WriteLine("----------------------------------------");
             Console.WriteLine("Produto | Funcionário | Valor");
             Console.WriteLine("----------------------------------------");
@@ -205,11 +201,11 @@ namespace Trabalho_Mercado
                 double valorVenda = qtdVendida * valorUnitario;
                 totalGeral += valorVenda;
 
-                Console.WriteLine($"{codProd}\t{codFunc}\tR$ {valorVenda:F2}");
+                Console.WriteLine($"{codProd}   | {codFunc}   | R${valorVenda}");
             }
 
             Console.WriteLine("----------------------------------------");
-            Console.WriteLine($"Total das vendas: R$ {totalGeral:F2}");
+            Console.WriteLine($"Total das vendas: R$ {totalGeral}");
 
             Console.WriteLine("\nPressione qualquer tecla para continuar...");
             Console.ReadKey();
@@ -219,12 +215,12 @@ namespace Trabalho_Mercado
         {
             Console.Clear();
 
-            Console.WriteLine("=== RELATÓRIO POR FUNCIONÁRIO ===");
+            Console.WriteLine("--- RELATÓRIO POR FUNCIONÁRIO ---");
             Console.Write("Código do funcionário: ");
             string codigoFuncionario = Console.ReadLine();
 
             Console.WriteLine("----------------------------------------");
-            Console.WriteLine("Prod\tFunc\tValor");
+            Console.WriteLine("Produto | Funcionário | Valor");
             Console.WriteLine("----------------------------------------");
 
             double totalFuncionario = 0;
@@ -250,19 +246,16 @@ namespace Trabalho_Mercado
 
                     totalFuncionario += valorVenda;
 
-                    Console.WriteLine(
-                        $"{codProd}\t{codigoFuncionario}\tR$ {valorVenda:F2}"
-                    );
+                    Console.WriteLine($"{codProd}  | {codigoFuncionario} | R${valorVenda}");
                 }
             }
 
             double comissao = totalFuncionario * 0.10;
 
             Console.WriteLine("----------------------------------------");
-            Console.WriteLine($"Total vendido: R$ {totalFuncionario:F2}");
-            Console.WriteLine($"Comissão (10%): R$ {comissao:F2}");
-
-            Console.WriteLine("\nPressione qualquer tecla para continuar...");
+            Console.WriteLine($"Total vendido: R$ {totalFuncionario}");
+            Console.WriteLine($"Comissão (10%): R$ {comissao}");
+            Console.WriteLine("Pressione qualquer tecla para continuar...");
             Console.ReadKey();
         }
     }
